@@ -1,0 +1,22 @@
+# Single repo for everything (waaree-web + waaree-apis). App-specific ignores live in each app's own .gitignore.
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Local Claude settings (personal permissions)
+.claude/settings.local.json
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# AI test artifacts (screenshots, traces)
+.playwright-mcp/
+
+# Kept on this machine only: research/competitor material and local experiments
+reference/
+standalone-export/

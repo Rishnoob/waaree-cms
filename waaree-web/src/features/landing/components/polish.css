@@ -1,0 +1,111 @@
+/* Landing polish: tilting cards and page transitions (React <ViewTransition> classes). */
+
+/* Tilting cards: the glare follows the pointer (vars set in Polish) */
+.wr-tilt {
+  position: relative;
+  will-change: transform;
+}
+.wr-tilt::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(420px circle at var(--gx, 50%) var(--gy, 50%), rgb(255 255 255 / 0.65), transparent 45%);
+  opacity: var(--go, 0);
+  transition: opacity 0.4s;
+}
+
+/* Page transitions between the homepage and a site page */
+::view-transition-old(.page-out) {
+  animation: wr-page-out 0.35s cubic-bezier(0.4, 0, 1, 1) both;
+}
+::view-transition-new(.page-in) {
+  animation: wr-page-in 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+::view-transition-group(.morph) {
+  animation-duration: 0.6s;
+  animation-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+@keyframes wr-page-out {
+  to {
+    opacity: 0;
+    transform: translateY(-12px);
+    filter: blur(4px);
+  }
+}
+@keyframes wr-page-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+    filter: blur(6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(.page-out),
+  ::view-transition-new(.page-in),
+  ::view-transition-group(.morph) {
+    animation: none;
+  }
+}
+
+/* Who we are: the firsts drift by in one slow loop (two copies, so it never jumps) */
+.wr-marquee {
+  animation: wr-marquee 60s linear infinite;
+}
+@keyframes wr-marquee {
+  to {
+    transform: translateX(calc(-50% - 0.5rem));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wr-marquee {
+    animation: none;
+    width: auto;
+    flex-wrap: wrap;
+  }
+  .wr-marquee > ul[aria-hidden] {
+    display: none;
+  }
+  .wr-marquee > ul {
+    flex-wrap: wrap;
+  }
+}
+
+/* What's next: a light travels along the road; a shimmer crosses the market bar */
+.wn-pulse {
+  animation: wn-pulse 4.5s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+@keyframes wn-pulse {
+  from {
+    left: 0;
+    opacity: 0;
+  }
+  10%,
+  90% {
+    opacity: 1;
+  }
+  to {
+    left: 100%;
+    opacity: 0;
+  }
+}
+.wn-shimmer {
+  animation: wn-shimmer 3.8s ease-in-out infinite;
+}
+@keyframes wn-shimmer {
+  from {
+    left: -35%;
+  }
+  to {
+    left: 110%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wn-pulse,
+  .wn-shimmer {
+    animation: none;
+    opacity: 0;
+  }
+}

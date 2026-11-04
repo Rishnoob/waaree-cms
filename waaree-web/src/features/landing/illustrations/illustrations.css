@@ -1,0 +1,77 @@
+/* Off-screen scenes hold still (LandingPage marks visible ones with data-live), so only what you see animates. */
+.ill:not([data-live]) * {
+  animation-play-state: paused !important;
+}
+
+/* Gentle life for the story illustrations (only when the visitor hasn't asked for reduced motion). */
+@media (prefers-reduced-motion: no-preference) {
+  .ill .ill-drift {
+    animation: ill-drift 14s ease-in-out infinite alternate;
+  }
+  .ill .ill-drift-slow {
+    animation: ill-drift 22s ease-in-out infinite alternate-reverse;
+  }
+  .ill .ill-glow {
+    animation: ill-glow 6s ease-in-out infinite;
+  }
+  .ill .ill-sweep {
+    animation: ill-sweep 5.5s ease-in-out infinite;
+  }
+  .ill .ill-bob {
+    animation: ill-bob 2.4s ease-in-out infinite;
+  }
+  .ill .ill-roll {
+    animation: ill-roll 1.6s linear infinite;
+  }
+  .ill .ill-drive {
+    animation: ill-drive 9s ease-in-out infinite;
+  }
+  .ill .ill-sail {
+    animation: ill-sail 12s ease-in-out infinite alternate;
+  }
+  .ill .ill-blink {
+    animation: ill-blink 2.8s ease-in-out infinite;
+  }
+  .ill .ill-rise {
+    animation: ill-rise 3.2s ease-in-out infinite;
+  }
+}
+
+@keyframes ill-drift {
+  from { transform: translateX(-10px); }
+  to { transform: translateX(14px); }
+}
+@keyframes ill-glow {
+  0%, 100% { transform: scale(1); opacity: 0.95; }
+  50% { transform: scale(1.06); opacity: 1; }
+}
+@keyframes ill-sweep {
+  0%, 55% { opacity: 0; }
+  70% { opacity: 1; }
+  100% { opacity: 0; }
+}
+@keyframes ill-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-1.2px); }
+}
+@keyframes ill-roll {
+  to { stroke-dashoffset: -12; }
+}
+@keyframes ill-drive {
+  0% { transform: translate(-30px, -17px); opacity: 0; }
+  12%, 80% { opacity: 1; }
+  100% { transform: translate(40px, 23px); opacity: 0; }
+}
+@keyframes ill-sail {
+  from { transform: translate(-8px, 4px); }
+  to { transform: translate(8px, -4px); }
+}
+@keyframes ill-blink {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 1; }
+}
+@keyframes ill-rise {
+  0% { transform: translateY(4px); opacity: 0; }
+  30%, 70% { opacity: 1; }
+  100% { transform: translateY(-10px); opacity: 0; }
+}

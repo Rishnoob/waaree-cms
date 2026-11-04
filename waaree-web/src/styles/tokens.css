@@ -1,0 +1,93 @@
+/*
+ * Design tokens (design language v2): the ONLY place colors, radius, shadows and motion are defined.
+ * Source of truth: docs/design/design-rules.md. Brand colors and Poppins come from waaree.com;
+ * v2 refines neutrals, depth, shape and motion for a modern, minimal feel.
+ * Change a value here and in design-rules.md together.
+ */
+
+:root {
+  /* Brand (decorative: icons, borders, fills, gradients). Not for text on white. */
+  --brand-green: #0db02b;
+  --brand-blue: #28a9e2;
+  --brand-gradient: linear-gradient(120deg, #0db02b 0%, #1fae7e 45%, #28a9e2 100%);
+  --brand-tint: linear-gradient(120deg, rgb(13 176 43 / 0.09), rgb(40 169 226 / 0.09));
+  /* Soft mesh for hero areas and the login panel */
+  --brand-mesh:
+    radial-gradient(60% 80% at 15% 20%, rgb(13 176 43 / 0.16), transparent 60%),
+    radial-gradient(50% 70% at 85% 30%, rgb(40 169 226 / 0.16), transparent 60%),
+    radial-gradient(70% 60% at 50% 100%, rgb(13 176 43 / 0.08), transparent 70%);
+
+  /* Interactive (WCAG AA on white) */
+  --primary: #0a8a22;
+  --primary-strong: #087f1e;
+  --primary-foreground: #ffffff;
+  --info: #16729e;
+  --warning: #b45309;
+  --danger: #c62828;
+
+  /* Neutrals: same warm-grey text as waaree.com, slightly cooler green-tinted surfaces */
+  --canvas: #f3f6f4; /* app background behind the floating content panel */
+  --background: #ffffff;
+  --surface: #ffffff;
+  --surface-muted: #f6f8f7;
+  --foreground: #3a3d3c; /* headings (waaree.com #454242, a touch deeper for crispness) */
+  --body: #5b5b5b; /* waaree.com body text */
+  --muted: #6f7774; /* meta text, AA on white */
+  --placeholder: #a3aaa7;
+  --border: #e6eae8;
+  --border-strong: #d5dbd8;
+  --ring: #0db02b;
+
+  /* Shape: tight, precise radii (sleek, engineered feel) */
+  --radius-sm: 4px;
+  --radius: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+
+  /* Depth: layered, low-contrast shadows */
+  --shadow-soft: 0 1px 2px rgb(16 24 20 / 0.04), 0 8px 24px -12px rgb(16 24 20 / 0.08);
+  --shadow: 0 1px 2px rgb(16 24 20 / 0.05), 0 14px 32px -14px rgb(16 24 20 / 0.16);
+  --shadow-lg: 0 2px 6px rgb(16 24 20 / 0.06), 0 28px 64px -24px rgb(16 24 20 / 0.28);
+  --glow: 0 0 0 4px rgb(13 176 43 / 0.16);
+
+  /* Motion */
+  --duration: 200ms;
+  --easing: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Dark mode: CMS only (public site stays light, like waaree.com). Applied via class="dark" on <html>. */
+.dark {
+  --brand-tint: linear-gradient(120deg, rgb(13 176 43 / 0.14), rgb(40 169 226 / 0.14));
+  --brand-mesh:
+    radial-gradient(60% 80% at 15% 20%, rgb(13 176 43 / 0.18), transparent 60%),
+    radial-gradient(50% 70% at 85% 30%, rgb(40 169 226 / 0.16), transparent 60%);
+
+  --primary: #22c55e;
+  --primary-strong: #4ade80;
+  --primary-foreground: #06210d;
+  --info: #38bdf8;
+  --warning: #f59e0b;
+  --danger: #f87171;
+
+  --canvas: #0a0f0e;
+  --background: #0f1514;
+  --surface: #131b19;
+  --surface-muted: #19231f;
+  --foreground: #eef2f0;
+  --body: #c3cbc8;
+  --muted: #8f9a97;
+  --placeholder: #66716e;
+  --border: #233029;
+  --border-strong: #2e3d36;
+
+  --shadow-soft: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px -12px rgb(0 0 0 / 0.5);
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.35), 0 14px 32px -14px rgb(0 0 0 / 0.6);
+  --shadow-lg: 0 2px 6px rgb(0 0 0 / 0.4), 0 28px 64px -24px rgb(0 0 0 / 0.7);
+  --glow: 0 0 0 4px rgb(34 197 94 / 0.22);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration: 0ms;
+  }
+}

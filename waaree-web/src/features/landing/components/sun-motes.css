@@ -1,0 +1,24 @@
+.sun-motes .mote {
+  position: absolute;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgb(255 248 236 / 0.9) 0%, rgb(255 212 165 / 0.5) 38%, rgb(255 212 165 / 0) 70%);
+  filter: blur(0.5px);
+  opacity: 0.75;
+}
+.sun-motes .mote-glow {
+  box-shadow: 0 0 14px 4px rgb(255 214 170 / 0.35);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .sun-motes .mote {
+    animation-name: mote-rise;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+  }
+}
+@keyframes mote-rise {
+  0% { transform: translate(0, 0) scale(0.6); opacity: 0; }
+  15% { opacity: 0.85; }
+  50% { transform: translate(var(--drift), -45svh) scale(1); }
+  85% { opacity: 0.6; }
+  100% { transform: translate(calc(var(--drift) * -0.5), -90svh) scale(0.8); opacity: 0; }
+}
