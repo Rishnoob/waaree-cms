@@ -319,11 +319,18 @@ function Playground({ uP }: { uP: { value: number } }) {
                 swings.current[i] = g;
               }}
             >
-              <mesh position={[0, -0.06, 0]}>
-                <boxGeometry args={[0.002, 0.12, 0.002]} />
-                <meshBasicMaterial color="#9aa7b0" />
+              {/* two ropes down to a little seat, the child sitting on it */}
+              {[-0.022, 0.022].map((rx) => (
+                <mesh key={rx} position={[rx, -0.065, 0]}>
+                  <boxGeometry args={[0.002, 0.13, 0.002]} />
+                  <meshBasicMaterial color="#8a6a4a" />
+                </mesh>
+              ))}
+              <mesh position={[0, -0.132, 0]}>
+                <boxGeometry args={[0.056, 0.005, 0.024]} />
+                <meshStandardMaterial color="#c0763a" />
               </mesh>
-              <group position={[0, -0.16, 0]}>
+              <group position={[0, -0.148, 0]}>
                 <Kid i={i + 3} />
               </group>
             </group>
