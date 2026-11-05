@@ -340,12 +340,15 @@ function Scene({ sites, active, pins, bridge }: Props) {
     // the opening frame is the hand-off frame: this module exactly where “Inside the panel” left its own
     // (×1.015: the module’s outer frame sits a hair inside the render’s edge; measured on screen)
     const near = (1.015 * MOD.w * H) / (bridgeWidth(W, H) * 2 * Math.tan(THREE.MathUtils.degToRad(cam.fov / 2)));
-    cam.position.copy(CAM.look).addScaledVector(CAM.dir, near * Math.pow(far / near, t));
+    // phones: pull back further so all of India fits the narrow width (the opening frame is unchanged)
+    const fit = W < H ? Math.min(2.2, Math.max(1, 0.95 / (W / H))) : 1;
+    cam.position.copy(CAM.look).addScaledVector(CAM.dir, near * Math.pow((far * fit) / near, t));
     // straight above, "up" must lie along the map (north) or the view rolls as the camera starts to tilt
     const above = THREE.MathUtils.smoothstep(CAM.dir.y, 0.9, 0.999);
     cam.up.set(0, 1 - above, -above).normalize();
     cam.lookAt(CAM.look);
-    if (W < H) cam.setViewOffset(W, H, 0, -0.16 * t * H, W, H);
+    // phones: the map sits in the lower part, under the copy
+    if (W < H) cam.setViewOffset(W, H, -0.1 * t * W, -0.24 * t * H, W, H);
     else cam.setViewOffset(W, H, -0.17 * t * W, 0, W, H);
 
     // the hand-off: a white veil and the panel’s render cover the first frame, then the veil lifts

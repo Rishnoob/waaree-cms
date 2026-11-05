@@ -83,8 +83,9 @@ export function StoryNav() {
 
   return (
     <header className="fixed inset-x-0 top-3 z-50 px-3 md:top-4 md:px-[calc(7vw-1.25rem)]">
-      {/* no box: a soft white fade at the top edge keeps the bar readable over anything that scrolls under it */}
-      <div aria-hidden className="pointer-events-none absolute inset-x-0 -top-4 h-28 bg-[linear-gradient(180deg,rgb(255_255_255/0.92)_0%,rgb(255_255_255/0.7)_45%,rgb(255_255_255/0)_100%)]" />
+      {/* no box: a soft white fade at the top edge keeps the bar readable over anything that scrolls under it
+          (on phones the top of it is solid, as content runs right under the logo) */}
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 -top-4 h-28 bg-[linear-gradient(180deg,rgb(255_255_255/0.92)_0%,rgb(255_255_255/0.7)_45%,rgb(255_255_255/0)_100%)] max-md:h-[6.5rem] max-md:bg-[linear-gradient(180deg,#ffffff_0%,#ffffff_68%,rgb(255_255_255/0)_100%)]" />
       <div
         className={cn(
           // transparent all the way down, as at the top: the story shows through

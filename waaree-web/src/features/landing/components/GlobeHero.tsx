@@ -239,7 +239,7 @@ export function GlobeHero() {
         </div>
 
         {/* Arrives as the Earth turns to India: a line, not a list (the numbers live in Who we are) */}
-        <div className="hero-caption pointer-events-none absolute inset-x-0 top-[13svh] px-6 opacity-0 md:top-0 md:bottom-0 md:flex md:max-w-[36rem] md:flex-col md:justify-center md:pl-[7vw]">
+        <div className="hero-caption pointer-events-none absolute inset-x-0 top-[13svh] px-6 opacity-0 max-md:mx-4 max-md:rounded-2xl max-md:bg-white/80 max-md:px-5 max-md:py-5 max-md:shadow-[0_20px_50px_-30px_rgb(5_30_60/0.5)] max-md:backdrop-blur-md md:top-0 md:bottom-0 md:flex md:max-w-[36rem] md:flex-col md:justify-center md:pl-[7vw]">
           <p className="text-xs font-medium tracking-[0.25em] text-primary uppercase">Where it begins</p>
           <p className="mt-3 text-3xl leading-tight font-light tracking-tight text-foreground sm:text-5xl">
             It all begins in <Glow>India.</Glow>

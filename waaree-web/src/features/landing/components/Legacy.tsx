@@ -146,8 +146,9 @@ export function Legacy() {
           const grade = age > 0 ? `sepia(${(age * 0.55).toFixed(2)}) saturate(${(1 - age * 0.25).toFixed(2)}) contrast(${(1 + age * 0.06).toFixed(2)})` : "saturate(1.12) contrast(1.03)";
           return (
             <div key={m.year + i} data-shot aria-hidden className="absolute inset-0 isolate bg-white" style={{ display: i === 0 ? "block" : "none", filter: grade }}>
-              {/* the sharp scene, whole, at full height on the right; the camera pushes into it */}
-              <div className="absolute inset-y-0 right-0 z-[1] w-full origin-[62%_60%] will-change-transform [mask-image:linear-gradient(90deg,transparent_0%,black_20%,black_94%,transparent_100%)] md:w-[min(64vw,calc(100svh*1.32))]">
+              {/* the sharp scene, whole, at full height on the right; the camera pushes into it
+                  (phones: in the band between the year's text and the capacity graph) */}
+              <div className="absolute inset-y-0 right-0 z-[1] w-full max-md:top-[45svh] max-md:bottom-[17svh] origin-[62%_60%] will-change-transform [mask-image:linear-gradient(90deg,transparent_0%,black_20%,black_94%,transparent_100%)] md:w-[min(64vw,calc(100svh*1.32))]">
                 <SceneCover value="contain">{Art ? <Art /> : null}</SceneCover>
               </div>
               {/* the same scene, soft and wide, filling the rest of the screen */}

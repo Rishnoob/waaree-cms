@@ -36,7 +36,8 @@ export function WhatsNext() {
       const travel = gsap.to(track, {
         x: () => -(track.scrollWidth - window.innerWidth),
         ease: "none",
-        scrollTrigger: { trigger: ".wn-pin", start: "top top", end: "bottom bottom", scrub: reduced ? true : 0.6, invalidateOnRefresh: true },
+        // phones: a short hold first, so the first stop is read whole before the road moves
+        scrollTrigger: { trigger: ".wn-pin", start: () => (window.innerWidth < 768 ? "top -35%" : "top top"), end: "bottom bottom", scrub: reduced ? true : 0.6, invalidateOnRefresh: true },
       });
       // each stop lights as it nears the centre and dims as it leaves
       gsap.utils.toArray<HTMLElement>(".wn-stop").forEach((el) => {
@@ -69,7 +70,7 @@ export function WhatsNext() {
             </h2>
           </div>
 
-          <ol className="wn-track absolute top-[44svh] left-0 flex w-max items-start pr-[40vw] pl-6 will-change-transform md:pl-[7vw]">
+          <ol className="wn-track absolute top-[36svh] left-0 flex w-max items-start pr-[40vw] pl-6 will-change-transform md:top-[44svh] md:pl-[7vw]">
             {/* the road */}
             <span aria-hidden className="absolute top-[4.85rem] right-0 left-0 h-px bg-[linear-gradient(90deg,#0db02b,#28a9e2_55%,#e08a0c_90%,transparent)] shadow-[0_0_12px_rgb(40_169_226/0.6)] md:top-[6.95rem]">
               <span className="wn-pulse absolute top-1/2 size-2 -translate-y-1/2 rounded-full bg-white shadow-[0_0_10px_4px_rgb(255_255_255/0.9),0_0_22px_8px_rgb(40_169_226/0.55)]" />

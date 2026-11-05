@@ -34,7 +34,7 @@ export function Offerings() {
               </span>
               <span className="min-w-0 flex-1">
                 <span className="block text-sm font-medium text-foreground">{i.title}</span>
-                <span className="block truncate text-xs text-muted">{i.text}</span>
+                <span className="block text-xs text-muted max-md:line-clamp-2 md:truncate">{i.text}</span>
               </span>
               <ArrowUpRight aria-hidden className="size-4 shrink-0 text-muted transition-colors group-hover:text-primary-strong" />
             </a>

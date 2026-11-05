@@ -525,6 +525,7 @@ function Scene({ labels }: { labels: React.RefObject<HTMLDivElement | null> }) {
     [],
   );
   const els = useRef<HTMLElement[] | null>(null);
+  const widths = useRef<number[]>([]);
   useFrame((state, dt) => {
     const p = community.progress;
     uP.value = p;
@@ -537,11 +538,11 @@ function Scene({ labels }: { labels: React.RefObject<HTMLDivElement | null> }) {
     CAM.look.set(la[0] + (lb[0] - la[0]) * t, la[1] + (lb[1] - la[1]) * t, la[2] + (lb[2] - la[2]) * t);
     const cam = state.camera as THREE.PerspectiveCamera;
     const { width: w, height: h } = state.size;
-    if (w < h) CAM.pos.sub(CAM.look).multiplyScalar(1.7).add(CAM.look); // phones: step back
+    if (w < h) CAM.pos.sub(CAM.look).multiplyScalar(2.6).add(CAM.look); // phones: step back, so the groves fit
     cam.position.lerp(CAM.pos, 1 - Math.exp(-6 * dt));
     cam.lookAt(CAM.look);
     // the scene sits right of the copy (below it on phones)
-    if (w < h) cam.setViewOffset(w, h, 0, -0.18 * h, w, h);
+    if (w < h) cam.setViewOffset(w, h, 0, -0.27 * h, w, h); // phones: under the copy
     else cam.setViewOffset(w, h, -0.18 * w, 0, w, h);
 
     const root = labels.current;
@@ -551,7 +552,10 @@ function Scene({ labels }: { labels: React.RefObject<HTMLDivElement | null> }) {
     els.current.forEach((el, k) => {
       CAM.v.copy(LABEL_AT[k]!).project(cam);
       setStyle(el, "opacity", Math.max(0, shows[k]!).toFixed(3));
-      setStyle(el, "transform", `translate(${(((CAM.v.x + 1) / 2) * w).toFixed(1)}px, ${(((1 - CAM.v.y) / 2) * h).toFixed(1)}px)`);
+      // keep each label on screen (it is centred on its point): on phones the view is narrower than the scene
+      const half = (widths.current[k] ??= (el.firstElementChild as HTMLElement | null)?.offsetWidth ?? 0); // measured once
+      const x = Math.min(w - 8 - half / 2, Math.max(8 + half / 2, ((CAM.v.x + 1) / 2) * w));
+      setStyle(el, "transform", `translate(${x.toFixed(1)}px, ${(((1 - CAM.v.y) / 2) * h).toFixed(1)}px)`);
     });
   });
   return (

@@ -7,6 +7,8 @@ import { ArrowUpRight, BookOpen, GraduationCap, HeartPulse, Sprout, TrendingUp, 
 import dynamic from "next/dynamic";
 import { useRef } from "react";
 
+import { cn } from "@/lib/utils/cn";
+
 import { chapterNumber } from "../chapters";
 import { CARE, COMMUNITY_SOURCE, CSR, GROVES, plantedAt, SAPLINGS, STUDENTS, studentsAt } from "../data/community";
 import { IMPACT } from "../data/home";
@@ -68,8 +70,9 @@ export function GivingBack() {
 
         {/* labels pinned over the groves and the school */}
         <div ref={labels} aria-hidden className="pointer-events-none absolute inset-0">
-          {[...GROVES.map((g) => `${g.place} · ${n(g.trees)} trees`), `School · ${n(STUDENTS)}+ students`, ...CARE.map((c) => c.label)].map((t) => (
-            <div key={t} data-label className="absolute top-0 left-0 opacity-0 will-change-transform">
+          {/* phones show the groves and the school only: the care labels would pile up in the narrow view */}
+          {[...GROVES.map((g) => `${g.place} · ${n(g.trees)} trees`), `School · ${n(STUDENTS)}+ students`, ...CARE.map((c) => c.label)].map((t, i) => (
+            <div key={t} data-label className={cn("absolute top-0 left-0 opacity-0 will-change-transform", i > GROVES.length && "max-md:hidden")}>
               <span className="block -translate-x-1/2 -translate-y-full rounded-full border border-white/80 bg-white/85 px-3 py-1 text-[0.6875rem] font-medium whitespace-nowrap text-foreground shadow-[0_8px_24px_-12px_rgb(5_12_24/0.45)] backdrop-blur-md">
                 {t}
               </span>
@@ -134,7 +137,7 @@ export function GivingBack() {
           </div>
         </div>
 
-        <p className="pointer-events-none absolute right-6 bottom-5 max-w-sm text-right text-[0.625rem] leading-snug text-muted md:right-[7vw]">
+        <p className="pointer-events-none absolute right-6 bottom-5 max-w-sm text-right text-[0.625rem] leading-snug text-muted max-md:left-6 max-md:z-10 max-md:rounded-lg max-md:bg-white/75 max-md:px-3 max-md:py-2 max-md:backdrop-blur md:right-[7vw]">
           Source: {COMMUNITY_SOURCE}. Plantations with Sadbhavna Seva Foundation; schools through Tapovan Vidhyalay Dham.
         </p>
       </div>

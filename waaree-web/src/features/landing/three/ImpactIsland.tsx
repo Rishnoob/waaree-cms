@@ -431,9 +431,11 @@ function World() {
     const cam = state.camera as THREE.PerspectiveCamera;
     const { width: W, height: H } = state.size;
     const close = p < 0.36 ? 0 : p < 0.69 ? 0.4 : 0.7;
-    cam.position.lerp(v.set(0, 6.0 - close * 0.4, 12.4 - close * 0.8), 1 - Math.exp(-dt * 2));
+    const back = W < H ? 1.3 : 1; // phones: further back, so the whole island fits the narrow width
+    cam.position.lerp(v.set(0, (6.0 - close * 0.4) * back, (12.4 - close * 0.8) * back), 1 - Math.exp(-dt * 2));
     cam.lookAt(0, 0.2, 0);
-    if (W < H) cam.setViewOffset(W, H, 0, -0.2 * H, W, H);
+    // phones: the island sits low, under the copy card
+    if (W < H) cam.setViewOffset(W, H, 0, -0.27 * H, W, H);
     else cam.setViewOffset(W, H, -0.2 * W, 0.02 * H, W, H);
   });
 

@@ -58,11 +58,11 @@ export function Factories() {
         <div ref={stage} className={cn("sticky top-0 h-svh overflow-hidden bg-[radial-gradient(70%_70%_at_65%_55%,#f1f9f4_0%,#ffffff_70%)]", HANDOFF_STAGE)}>
           <HoloMap active={active} onActive={setActive} className="absolute inset-0" />
 
-          <p className="fac-cue pointer-events-none absolute inset-x-0 bottom-[10svh] text-center text-sm font-medium tracking-[0.2em] text-foreground/75 uppercase">
+          <p className="fac-cue pointer-events-none absolute inset-x-0 bottom-[10svh] px-6 text-center text-sm font-medium tracking-[0.2em] text-foreground/75 uppercase max-md:text-xs max-md:tracking-[0.12em]">
             Now pull back. This panel is one of millions ↓
           </p>
 
-          <div className="fac-copy pointer-events-none absolute inset-y-0 left-0 flex w-full max-w-[31rem] flex-col justify-center bg-[linear-gradient(90deg,#ffffff_55%,rgb(255_255_255/0))] px-6 pr-16 opacity-0 md:pl-[7vw]">
+          <div className="fac-copy pointer-events-none absolute inset-y-0 left-0 flex w-full max-w-[31rem] flex-col justify-center bg-[linear-gradient(90deg,#ffffff_55%,rgb(255_255_255/0))] px-6 pr-16 opacity-0 max-md:bottom-auto max-md:justify-start max-md:bg-[linear-gradient(180deg,#ffffff_72%,rgb(255_255_255/0))] max-md:pt-[13svh] max-md:pr-6 max-md:pb-12 md:pl-[7vw]">
             <ChapterHeader
               id="factories"
               compact

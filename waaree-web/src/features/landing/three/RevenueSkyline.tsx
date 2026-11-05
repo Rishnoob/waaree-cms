@@ -119,7 +119,8 @@ function Skyline({ labels }: { labels: React.RefObject<HTMLDivElement | null> })
     const k = 1 - Math.exp(-4 * dt);
     cam.position.lerp(CAM.pos, k);
     cam.lookAt(CAM.look);
-    if (narrow) cam.setViewOffset(w, hgt, 0, -0.2 * hgt, w, hgt);
+    // phones: the columns sit under the copy (the last beat’s copy moves up to the top, see Growth)
+    if (narrow) cam.setViewOffset(w, hgt, 0, -(0.2 - 0.06 * Math.max(ob, tg)) * hgt, w, hgt);
     else cam.setViewOffset(w, hgt, -0.2 * w, 0, w, hgt);
     spin.current = THREE.MathUtils.clamp(spin.current + growth.spin, -0.5, 0.5) * (growth.dragging ? 1 : 0.96);
     growth.spin *= 0.9;

@@ -119,13 +119,13 @@ export function InsideThePanel() {
         </div>
 
         {/* 2 · Apart */}
-        <div className="ip-apart pointer-events-none absolute bottom-[9svh] left-6 max-w-sm opacity-0 md:left-[7vw]">
+        <div className="ip-apart pointer-events-none absolute bottom-[9svh] left-6 max-w-sm opacity-0 max-md:right-4 max-md:left-4 max-md:rounded-2xl max-md:bg-white/80 max-md:px-5 max-md:py-4 max-md:backdrop-blur-md md:left-[7vw]">
           <p className="text-xs font-medium tracking-[0.25em] text-primary uppercase">Pulled apart</p>
           <p className="mt-2 text-2xl leading-snug font-light text-foreground md:text-3xl">Every layer earns its place for decades of sun.</p>
         </div>
 
         {/* 3 · Inside one cell */}
-        <div className="ip-dive pointer-events-none absolute inset-x-0 bottom-[7svh] px-6 opacity-0 md:bottom-auto md:top-[16svh] md:max-w-md md:pl-[7vw]">
+        <div className="ip-dive pointer-events-none absolute inset-x-0 bottom-[7svh] px-6 opacity-0 max-md:mx-4 max-md:rounded-2xl max-md:bg-white/80 max-md:px-5 max-md:py-5 max-md:shadow-[0_20px_50px_-30px_rgb(5_30_60/0.5)] max-md:backdrop-blur-md md:bottom-auto md:top-[16svh] md:max-w-md md:pl-[7vw]">
           <p className="text-xs font-medium tracking-[0.25em] text-primary uppercase">Inside one cell · cut open</p>
           <p className="mt-2 text-2xl leading-snug font-light text-foreground md:text-4xl">This is where light becomes current.</p>
           <p className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted">
@@ -135,12 +135,12 @@ export function InsideThePanel() {
           </p>
         </div>
 
-        <p className="ip-next pointer-events-none absolute inset-x-0 bottom-[10svh] text-center text-sm font-medium tracking-[0.2em] text-foreground/75 uppercase opacity-0">
+        <p className="ip-next pointer-events-none absolute inset-x-0 bottom-[10svh] text-center max-md:top-[14svh] max-md:bottom-auto text-sm font-medium tracking-[0.2em] text-foreground/75 uppercase opacity-0">
           Rewind ↓
         </p>
 
         {/* 4 · All 144 light up */}
-        <div className="ip-final absolute inset-x-0 bottom-[6svh] px-6 opacity-0 md:bottom-auto md:top-1/2 md:max-w-[30rem] md:-translate-y-1/2 md:pl-[7vw]">
+        <div className="ip-final absolute inset-x-0 bottom-[6svh] px-6 opacity-0 max-md:mx-4 max-md:rounded-2xl max-md:bg-white/80 max-md:px-5 max-md:py-5 max-md:shadow-[0_20px_50px_-30px_rgb(5_30_60/0.5)] max-md:backdrop-blur-md md:bottom-auto md:top-1/2 md:max-w-[30rem] md:-translate-y-1/2 md:pl-[7vw]">
           <p className="text-xs font-medium tracking-[0.25em] text-primary uppercase">Times 144 cells</p>
           <p className="mt-2 text-4xl leading-tight font-light tracking-tight text-foreground md:text-6xl">
             Up to <Glow>{FY26.maxModuleWatts} W</Glow> from one module.

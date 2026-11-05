@@ -71,6 +71,16 @@ export function Growth() {
         .to(".gr-profit", { opacity: 0, y: -16, duration: 0.4 }, 8.5)
         .fromTo(".gr-ahead", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6 }, 8.8)
         .to({}, { duration: 0.4 }, 9.6);
+      // phones: no room beside the columns, so the last beat takes the headline’s place at the top
+      gsap.matchMedia().add("(max-width: 767px)", () => {
+        const beats = root.current!.querySelector<HTMLElement>(".gr-beats")!;
+        const title = root.current!.querySelector<HTMLElement>("#growth-title")!;
+        gsap
+          .timeline({ scrollTrigger: { trigger: root.current, start: "top top", end: "bottom bottom", scrub: reduced ? true : 0.6 } })
+          .to(".gr-intro", { opacity: 0, duration: 0.4 }, 8.5)
+          .set(".gr-beats", { y: () => title.offsetTop - beats.offsetTop }, 8.6)
+          .to({}, { duration: 0.4 }, 9.6);
+      });
     },
     { scope: root },
   );
@@ -108,8 +118,8 @@ export function Growth() {
           {LABELS.map((l) => (
             <div key={l.top} data-col className="group absolute top-0 left-0 opacity-0 will-change-transform">
               <div className="-translate-x-1/2 -translate-y-full pb-2 text-center whitespace-nowrap">
-                <p className="text-[0.625rem] tracking-[0.15em] text-muted uppercase">{l.top}</p>
-                <p className={cn("text-sm font-medium tabular-nums md:text-base", l.tone)}>{l.value}</p>
+                <p className="text-[0.625rem] tracking-[0.15em] text-muted uppercase max-md:mx-auto max-md:max-w-[5.5rem] max-md:text-[0.5625rem] max-md:leading-tight max-md:whitespace-normal">{l.top}</p>
+                <p className={cn("text-sm font-medium tabular-nums max-md:text-[0.6875rem] md:text-base", l.tone)}>{l.value}</p>
                 <p className="hidden text-[0.6875rem] text-[#b86e00] group-data-[profit]:block">{l.sub}</p>
               </div>
             </div>
@@ -122,6 +132,7 @@ export function Growth() {
             <span aria-hidden className="h-px w-6 bg-border-strong" />
             Growth
           </p>
+          <div className="gr-intro">
           <h2 id="growth-title" data-split className="mt-4 text-4xl leading-[1.06] font-light tracking-tight text-balance text-foreground sm:text-5xl lg:text-6xl">
             Revenue up <span className="whitespace-nowrap">{times(first.revenue, last.revenue)}×.</span>{" "}
             <Glow>
@@ -144,9 +155,10 @@ export function Growth() {
               </li>
             ))}
           </ol>
+          </div>
 
           {/* two beats in one place: the profit, then what is ahead */}
-          <div className="mt-7 grid [&>*]:col-start-1 [&>*]:row-start-1">
+          <div className="gr-beats mt-7 grid [&>*]:col-start-1 [&>*]:row-start-1">
             <div className="gr-profit opacity-0">
               <p className="flex items-center gap-2 text-sm text-foreground">
                 <span className="size-2.5 rounded-sm bg-[#ffb81f] shadow-[0_0_10px_#ffb81f]" />

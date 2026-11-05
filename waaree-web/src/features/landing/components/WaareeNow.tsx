@@ -148,7 +148,7 @@ function Billboard() {
 /** A milestone on the timeline row: the year, glowing, with the line running on. */
 function YearMark({ label }: { label: string }) {
   return (
-    <div aria-hidden className="relative flex w-14 shrink-0 snap-start flex-col items-center pt-2">
+    <div aria-hidden className="relative flex w-10 shrink-0 snap-start md:w-14 flex-col items-center pt-2">
       <span className="bg-(image:--brand-gradient) bg-clip-text text-lg font-medium whitespace-nowrap text-transparent [writing-mode:vertical-rl]">{label}</span>
       <span className="mt-3 w-px flex-1 bg-[linear-gradient(180deg,#0db02b,#28a9e2_60%,transparent)]" />
       <span className="absolute top-0 size-2 rounded-full bg-brand-green shadow-[0_0_0_4px_rgb(13_176_43/0.15),0_0_14px_rgb(13_176_43/0.6)]" />
